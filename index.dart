@@ -1,5 +1,4 @@
-import 'lib/implementations/jsonData.dart';
-
+import 'lib.dart';
 
 void main(){
   var jsonFileName = './exampleFiles/jsonExample.json';
@@ -7,7 +6,3 @@ void main(){
   jsonData.load(jsonFileName);
   print(jsonData.fields);
 }
-
-
-// TODO's:
-// 
