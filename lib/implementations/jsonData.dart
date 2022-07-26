@@ -4,9 +4,7 @@ import 'dart:io';
 
 class JsonData implements Data {
   Map<String, dynamic> jsonData=Map<String, dynamic>();
-  
   bool hasData = false;
-  
   
   String get data {
     return jsonEncode(jsonData);
@@ -32,7 +30,7 @@ class JsonData implements Data {
     final jsonFile = File(fileName).readAsStringSync();
     jsonData = jsonDecode(jsonFile);
   }
-  
+
   void save(String fileName){
     // Not implemented
   } 
