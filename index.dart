@@ -1,8 +1,11 @@
-import 'lib/data.dart';
+import 'lib/implementations/jsonData.dart';
 
 
 void main(){
-  print(":)");
+  var jsonFileName = './exampleFiles/jsonExample.json';
+  var jsonData = JsonData();
+  jsonData.load(jsonFileName);
+  print(jsonData.fields);
 }
 
 
