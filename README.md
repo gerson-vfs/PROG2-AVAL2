@@ -1,5 +1,11 @@
-# PROG2-AVAL2
+# Como rodar os testes
+## Setup
+rode `dart pub get` para instalar a dependencia de teste
 
+## Rodando os testes
+rode `dart test` para testar
+
+# Requisitos:
 OK 1. As classes Data e DelimitedData são abstratas, portanto, não podem ser instanciadas.
 2. Os nomes dos campos de dados são obrigatórios em todos os dados manipulados. A não presença dos nomes dos campos nas strings de dados é condição de erro.
 3. As demais classes são concretas e devem implementar os métodos abstratos das classes Data e DelimitedData (getters e
