@@ -9,7 +9,3 @@ abstract class Data {
 
   List<String> get fields;
 }
-
-abstract class DelimitedData extends Data {
-  String get separator;
-}

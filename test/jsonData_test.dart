@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import '../lib.dart';
+import '../lib/jsonData.dart';
 
 void main() {
   test('json Data should have hasData false as default', () {

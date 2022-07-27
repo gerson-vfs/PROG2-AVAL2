@@ -1,4 +1,4 @@
-import 'lib.dart';
+import './lib/jsonData.dart';
 
 void main(){
   var jsonFileName = './exampleFiles/jsonExample.json';
