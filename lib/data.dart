@@ -4,7 +4,7 @@ abstract class Data {
   void clear();
 
   bool get hasData {
-    return data != null;
+    return !data.isEmpty;
   }
 
   String get data;  
