@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:csv/csv.dart';
-import './delimitedData.dart';
+import 'delimited_data.dart';
 
 class CSVData implements DelimitedData {
   List<List<dynamic>> rows = [];

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:test/test.dart';
-import '../lib/csvData.dart';
+import '../lib/csv_data.dart';
 
 void main() {
   test('CSVData should have hasData false as default', () {

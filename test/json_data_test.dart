@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:test/test.dart';
-import '../lib/jsonData.dart';
+import '../lib/json_data.dart';
 
 void main() {
   test('the json Data should have hasData false as default', () {
@@ -23,13 +23,13 @@ void main() {
   test('a new file should be save with json content', () {
     var sut = JSONData();
     sut.load('./exampleFiles/jsonExample.json');
-    sut.save('./test/outFiles/jsonExample.json');
-    expect(File('./test/outFiles/jsonExample.json').existsSync(), equals(true));
+    sut.save('./.generated/jsonExample.json');
+    expect(File('./.generated/jsonExample.json').existsSync(), equals(true));
   });
 
   test('the json file should be unload and has data as false', () {
     var sut = JSONData();
-    sut.load('./test/outFiles/jsonExample.json');
+    sut.load('./.generated/jsonExample.json');
     sut.clear();
     expect(sut.hasData, equals(false));
   });
