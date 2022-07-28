@@ -6,7 +6,7 @@ void main(){
   jSONData.load(jsonFileName);
   print(jSONData.hasData);
   print(jSONData.fields);
-  jSONData.save('./example_files/json_examplen.json');
+  jSONData.save('./example_files/json_example_out.json');
   jSONData.clear();
   print(jSONData.hasData);
 }
