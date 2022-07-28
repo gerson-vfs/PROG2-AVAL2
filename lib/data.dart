@@ -3,9 +3,7 @@ abstract class Data {
   void save(String fileName); 
   void clear();
 
-  bool get hasData {
-    return !data.isEmpty;
-  }
+  bool get hasData;
 
   String get data;  
   void set data(String _data);
