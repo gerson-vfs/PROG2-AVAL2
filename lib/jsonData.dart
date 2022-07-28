@@ -22,6 +22,7 @@ class JSONData implements Data {
   }
   
   List<String> get fields {
+    // Fields not found or with problems
     var fieldList = jsonData.keys.toList();
     if (fieldList.length == 0) {
       return [];
@@ -31,11 +32,17 @@ class JSONData implements Data {
   }
 
   void load(String fileName) {
+    // --- Errors ---
+    // Format Invalid
+    // File not found
     final jsonFile = File(fileName).readAsStringSync();
     data = jsonFile;
   }
 
   void save(String fileName) {
+    // --- Errors ---
+    // No could be saved
+    // No could write inside file
     final jsonContent = data;
     final outFile = File(fileName);
     outFile.createSync(recursive: true);
