@@ -2,7 +2,7 @@ import './data.dart';
 import 'dart:convert';
 import 'dart:io';
 
-class JsonData implements Data {
+class JSONData implements Data {
   Map<String, dynamic> jsonData = Map<String, dynamic>();
 
   String get data {
