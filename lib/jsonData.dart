@@ -4,22 +4,23 @@ import 'dart:io';
 
 class JsonData implements Data {
   Map<String, dynamic> jsonData = Map<String, dynamic>();
-  bool hasData = false;
 
   String get data {
     return jsonEncode(jsonData);
   }
 
   void set data(String _data) {
-    if (_data != '') {
+    if (_data != null) {
       jsonData = jsonDecode(_data)[0];
-      hasData = true;
     } else {
       jsonData = Map<String, dynamic>();
-      hasData = false;
     }
   }
 
+  bool get hasData {
+    return !jsonData.isEmpty;
+  }
+  
   List<String> get fields {
     var fieldList = jsonData.keys.toList();
     if (fieldList.length == 0) {
@@ -31,17 +32,17 @@ class JsonData implements Data {
 
   void load(String fileName) {
     final jsonFile = File(fileName).readAsStringSync();
-    this.data = jsonFile;
+    data = jsonFile;
   }
 
   void save(String fileName) {
-    final jsonContent = this.data;
+    final jsonContent = data;
     final outFile = File(fileName);
     outFile.createSync(recursive: true);
     outFile.writeAsStringSync(jsonContent);
   }
 
   void clear() {
-    this.data = '';
+    data = null;
   }
 }

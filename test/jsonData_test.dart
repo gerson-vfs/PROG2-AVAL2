@@ -3,12 +3,12 @@ import 'package:test/test.dart';
 import '../lib/jsonData.dart';
 
 void main() {
-  test('json Data should have hasData false as default', () {
+  test('the json Data should have hasData false as default', () {
     var sut = JsonData();
     expect(sut.hasData, equals(false));
   });
 
-  test('an json file should be load and has data as true', () {
+  test('the json Data should have hasData true as default', () {
     var sut = JsonData();
     sut.load('./exampleFiles/jsonExample.json');
     expect(sut.hasData, equals(true));
@@ -26,7 +26,7 @@ void main() {
     expect(File('./exampleFiles/jsonExamplen.json').existsSync(), equals(true));
   });
 
-  test('an json file should be unload and has data as false', () {
+  test('the json file should be unload and has data as false', () {
     var sut = JsonData();
     sut.load('./exampleFiles/jsonExamplen.json');
     sut.clear();
