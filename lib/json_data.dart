@@ -10,11 +10,7 @@ class JSONData implements Data {
   }
 
   void set data(String _data) {
-    if (_data != null) {
-      jsonData = jsonDecode(_data);
-    } else {
-      jsonData = [];
-    }
+    jsonData = _data != null ? jsonDecode(_data) : [];
   }
 
   bool get hasData {
