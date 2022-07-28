@@ -28,7 +28,7 @@ void main() {
 
   test('an json file should be unload and has data as false', () {
     var sut = JsonData();
-    sut.save('./exampleFiles/jsonExamplen.json');
+    sut.load('./exampleFiles/jsonExamplen.json');
     sut.clear();
     expect(sut.hasData, equals(false));
   });

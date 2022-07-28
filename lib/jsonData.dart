@@ -14,6 +14,9 @@ class JsonData implements Data {
     if (_data != '') {
       jsonData = jsonDecode(_data)[0];
       hasData = true;
+    } else {
+      jsonData = Map<String, dynamic>();
+      hasData = false;
     }
   }
 
@@ -32,14 +35,13 @@ class JsonData implements Data {
   }
 
   void save(String fileName) {
-    final jsonContent = jsonEncode(jsonData);
+    final jsonContent = this.data;
     final outFile = File(fileName);
     outFile.createSync(recursive: true);
     outFile.writeAsStringSync(jsonContent);
   }
 
   void clear() {
-    jsonData = Map<String, dynamic>();
     this.data = '';
   }
 }
