@@ -9,7 +9,7 @@ void main() {
   });
   test('CSVData should load csv file data correctly', () {
     var sut = CSVData();
-    sut.load('./exampleFiles/csvExample.csv');
+    sut.load('./example_files/csv_example.csv');
     expect(sut.rows.length, equals(8));
     expect(sut.rows, equals([
       ['id','age','name','gender','email'],
@@ -25,7 +25,7 @@ void main() {
 
   test('CSVData should load csv file data correctly', () {
     var sut = CSVData();
-    sut.load('./exampleFiles/csvExample.csv');
+    sut.load('./example_files/csv_example.csv');
     expect(sut.rows.length, equals(8));
     expect(sut.rows, equals([
       ['id','age','name','gender','email'],
@@ -49,19 +49,19 @@ void main() {
 
   test('CSVData should get fields correctly after load csv file', () {
     var sut = CSVData();
-    sut.load('./exampleFiles/csvExample.csv');
+    sut.load('./example_files/csv_example.csv');
     expect(sut.fields, equals(['id','age','name','gender','email']));
   });
 
   test('CSVData should have hasData true after load csv file', () {
     var sut = CSVData();
-    sut.load('./exampleFiles/csvExample.csv');
+    sut.load('./example_files/csv_example.csv');
     expect(sut.hasData, equals(true));
   });
 
   test('CSVData should clear fields after load csv file and call clear', () {
     var sut = CSVData();
-    sut.load('./exampleFiles/csvExample.csv');
+    sut.load('./example_files/csv_example.csv');
     sut.clear();
     expect(sut.hasData, equals(false));
     expect(sut.data, equals(''));
@@ -71,13 +71,13 @@ void main() {
 
   test('CSVData should save csv in filePath with correct Data', () {
     var sut = CSVData();
-    sut.load('./exampleFiles/csvExample.csv');
+    sut.load('./example_files/csv_example.csv');
     var originalRows = sut.rows;
     var originalFields = sut.fields;
     var originalData = sut.data;
-    sut.save('./.generated/csvEquivalent.csv');
+    sut.save('./.generated/csv_equivalent.csv');
     sut.clear();
-    sut.load('./.generated/csvEquivalent.csv');
+    sut.load('./.generated/csv_equivalent.csv');
     expect(sut.rows, equals(originalRows));
     expect(sut.fields, equals(originalFields));
     expect(sut.data, equals(originalData));

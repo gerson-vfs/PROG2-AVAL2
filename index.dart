@@ -1,12 +1,12 @@
 import 'lib/json_data.dart';
 
 void main(){
-  var jsonFileName = './exampleFiles/jsonExample.json';
+  var jsonFileName = './example_files/json_example.json';
   var jSONData = JSONData();
   jSONData.load(jsonFileName);
   print(jSONData.hasData);
   print(jSONData.fields);
-  jSONData.save('./exampleFiles/jsonExamplen.json');
+  jSONData.save('./example_files/json_examplen.json');
   jSONData.clear();
   print(jSONData.hasData);
 }
