@@ -3,40 +3,43 @@ import 'dart:convert';
 import 'dart:io';
 
 class JsonData implements Data {
-  Map<String, dynamic> jsonData=Map<String, dynamic>();
+  Map<String, dynamic> jsonData = Map<String, dynamic>();
   bool hasData = false;
-  
+
   String get data {
     return jsonEncode(jsonData);
   }
 
-  void set data(String _data){
-    jsonData = jsonDecode(_data);
-    if(_data != ''){
+  void set data(String _data) {
+    if (_data != '') {
+      jsonData = jsonDecode(_data)[0];
       hasData = true;
-    } else {
-      hasData = false;
     }
   }
 
   List<String> get fields {
     var fieldList = jsonData.keys.toList();
-    if(fieldList == null){
+    if (fieldList.length == 0) {
       return [];
     }
+
     return fieldList;
   }
-  void load(String fileName){
+
+  void load(String fileName) {
     final jsonFile = File(fileName).readAsStringSync();
-    jsonData = jsonDecode(jsonFile);
+    this.data = jsonFile;
   }
 
-  void save(String fileName){
-    // Not implemented
-  } 
+  void save(String fileName) {
+    final jsonContent = jsonEncode(jsonData);
+    final outFile = File(fileName);
+    outFile.createSync(recursive: true);
+    outFile.writeAsStringSync(jsonContent);
+  }
 
-  void clear(){
+  void clear() {
     jsonData = Map<String, dynamic>();
-    hasData = false;
+    this.data = '';
   }
 }

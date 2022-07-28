@@ -5,4 +5,6 @@ void main(){
   var jsonData = JsonData();
   jsonData.load(jsonFileName);
   print(jsonData.fields);
+  jsonData.save('./exampleFiles/jsonExamplen.json');
+  jsonData.clear();
 }
