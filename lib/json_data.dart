@@ -3,31 +3,28 @@ import 'dart:convert';
 import 'dart:io';
 
 class JSONData implements Data {
-  Map<String, dynamic> jsonData = Map<String, dynamic>();
+  List<dynamic> jsonData = [];
 
   String get data {
-    return jsonEncode(jsonData);
+    return jsonData.isNotEmpty ? jsonEncode(jsonData) : null;
   }
 
   void set data(String _data) {
     if (_data != null) {
-      jsonData = jsonDecode(_data)[0];
+      jsonData = jsonDecode(_data);
     } else {
-      jsonData = Map<String, dynamic>();
+      jsonData = [];
     }
   }
 
   bool get hasData {
-    return !jsonData.isEmpty;
+    return data != null;
   }
-  
-  List<String> get fields {
-    // Fields not found or with problems
-    var fieldList = jsonData.keys.toList();
-    if (fieldList.length == 0) {
-      return [];
-    }
 
+  List<String> get fields {
+    // --- Errors ---
+    // Fields not found or with problems
+    List<String> fieldList = hasData ? jsonData[0].keys.toList() : [];
     return fieldList;
   }
 

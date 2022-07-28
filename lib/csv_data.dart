@@ -4,23 +4,12 @@ import 'delimited_data.dart';
 
 class CSVData implements DelimitedData {
   List<List<dynamic>> rows = [];
-  @override
   String data='';
 
-  @override
   bool hasData=false;
 
-  @override
-  void clear() {
-    rows = [];
-    data = '';
-    hasData = false;
-  }
-
-  @override
   List<String> get fields => rows.length > 0 ? rows[0].map((field) => field.toString()).toList() : [];
 
-  @override
   void load(String fileName) {
     final csvString = File(fileName).readAsStringSync();
     // TODO: throw FileNotFoundError se não encontrar
@@ -35,13 +24,17 @@ class CSVData implements DelimitedData {
     }
   }
 
-  @override
   void save(String fileName) {
     final outFile = File(fileName);
     outFile.createSync(recursive: true);
     outFile.writeAsStringSync(data);
   }
 
-  @override
+  void clear() {
+    rows = [];
+    data = '';
+    hasData = false;
+  }
+
   String get separator => ',';
 }

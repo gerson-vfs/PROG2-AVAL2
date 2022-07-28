@@ -7,36 +7,11 @@ void main() {
     var sut = CSVData();
     expect(sut.hasData, equals(false));
   });
-  test('CSVData should load csv file data correctly', () {
-    var sut = CSVData();
-    sut.load('./example_files/csv_example.csv');
-    expect(sut.rows.length, equals(8));
-    expect(sut.rows, equals([
-      ['id','age','name','gender','email'],
-      [0,29,'Magdalena Moreno','female','magdalenamoreno@orbean.com',],
-      [1,23,'Casandra Mullen','female','casandramullen@orbean.com',],
-      [2,30,'Brown Joyce','male','brownjoyce@orbean.com',],
-      [3,40,'Casey Pitts','male','caseypitts@orbean.com',],
-      [4,40,'Leah Barker','female','leahbarker@orbean.com',],
-      [5,35,'Faulkner Ross','male','faulknerross@orbean.com',],
-      [6,37,'Lindsay Tanner','male','lindsaytanner@orbean.com',],
-    ]));
-  });
 
   test('CSVData should load csv file data correctly', () {
     var sut = CSVData();
     sut.load('./example_files/csv_example.csv');
     expect(sut.rows.length, equals(8));
-    expect(sut.rows, equals([
-      ['id','age','name','gender','email'],
-      [0,29,'Magdalena Moreno','female','magdalenamoreno@orbean.com',],
-      [1,23,'Casandra Mullen','female','casandramullen@orbean.com',],
-      [2,30,'Brown Joyce','male','brownjoyce@orbean.com',],
-      [3,40,'Casey Pitts','male','caseypitts@orbean.com',],
-      [4,40,'Leah Barker','female','leahbarker@orbean.com',],
-      [5,35,'Faulkner Ross','male','faulknerross@orbean.com',],
-      [6,37,'Lindsay Tanner','male','lindsaytanner@orbean.com',],
-    ]));
     expect(sut.data, equals('''id,age,name,gender,email
 0,29,Magdalena Moreno,female,magdalenamoreno@orbean.com
 1,23,Casandra Mullen,female,casandramullen@orbean.com
