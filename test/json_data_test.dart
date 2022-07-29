@@ -18,7 +18,7 @@ void main() {
     var sut = JSONData();
     sut.load('./example_files/json_example_case2.json');
     expect(sut.fields.length, equals(5));
-    expect(sut.data, equals('[{"id":0,"age": 29,"name":"Magdalena Moreno","gender":"female","email":"magdalenamoreno@orbean.com"}]'));
+    expect(sut.data, equals('[{"id":0,"age":29,"name":"Magdalena Moreno","gender":"female","email":"magdalenamoreno@orbean.com"}]'));
   });
 
   test('JSONData should get fields correctly after load json file', () {

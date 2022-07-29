@@ -25,7 +25,6 @@ class JSONData implements Data {
     // --- Errors ---
     // // Fields not found or with problems
     List<String> fieldList = hasData ? jsonData[0].keys.toList() : [];
-    print(fieldList);
     return fieldList;
   }
 
