@@ -1,6 +1,6 @@
 name: prog2
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 dependencies:
   csv: ^5.0.1
   test:
