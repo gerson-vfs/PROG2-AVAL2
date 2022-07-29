@@ -4,3 +4,4 @@ environment:
 dependencies:
   csv: ^5.0.1
   test:
+  xml: ^6.1.0
