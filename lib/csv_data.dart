@@ -4,7 +4,7 @@ import 'delimited_data.dart';
 
 class CSVData implements DelimitedData {
   List<List<dynamic>> rows = [];
-  String data='';
+  String? data='';
 
   bool hasData=false;
 
@@ -27,7 +27,7 @@ class CSVData implements DelimitedData {
   void save(String fileName) {
     final outFile = File(fileName);
     outFile.createSync(recursive: true);
-    outFile.writeAsStringSync(data);
+    outFile.writeAsStringSync(data ?? '');
   }
 
   void clear() {

@@ -3,14 +3,20 @@ import 'dart:convert';
 import 'dart:io';
 
 class JSONData implements Data {
-  List<dynamic> jsonData = [];
+  dynamic jsonData = [];
 
-  String get data {
+  String? get data {
     return jsonData.isNotEmpty ? jsonEncode(jsonData) : null;
   }
 
-  void set data(String _data) {
-    jsonData = _data != null ? jsonDecode(_data) : [];
+  void set data(String? _data) {
+    dynamic list = [];
+    jsonData = jsonDecode(_data ?? '[]');
+
+    if (jsonData is Map) {
+      jsonData.forEach((key, value) => list.add({key: value}));
+      jsonData = list;
+    }
   }
 
   bool get hasData {
@@ -19,7 +25,7 @@ class JSONData implements Data {
 
   List<String> get fields {
     // --- Errors ---
-    // Fields not found or with problems
+    // // Fields not found or with problems
     List<String> fieldList = hasData ? jsonData[0].keys.toList() : [];
     return fieldList;
   }
@@ -36,10 +42,11 @@ class JSONData implements Data {
     // --- Errors ---
     // No could be saved
     // No could write inside file
+
     final jsonContent = data;
     final outFile = File(fileName);
     outFile.createSync(recursive: true);
-    outFile.writeAsStringSync(jsonContent);
+    outFile.writeAsStringSync(jsonContent ?? '');
   }
 
   void clear() {
