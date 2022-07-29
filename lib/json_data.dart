@@ -10,13 +10,13 @@ class JSONData implements Data {
   }
 
   void set data(String? _data) {
-    dynamic list = [];
     jsonData = jsonDecode(_data ?? '[]');
 
     if (jsonData is Map) {
-      jsonData.forEach((key, value) => list.add({key: value}));
-      jsonData = list;
+      jsonData = [jsonData];
     }
+
+    print(jsonData);
   }
 
   bool get hasData {
@@ -27,6 +27,7 @@ class JSONData implements Data {
     // --- Errors ---
     // // Fields not found or with problems
     List<String> fieldList = hasData ? jsonData[0].keys.toList() : [];
+    print(fieldList);
     return fieldList;
   }
 

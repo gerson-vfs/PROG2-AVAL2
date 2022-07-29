@@ -14,6 +14,13 @@ void main() {
     expect(sut.data, equals('[{"id":0,"age":29,"name":"Magdalena Moreno","gender":"female","email":"magdalenamoreno@orbean.com"},{"id":1,"age":23,"name":"Casandra Mullen","gender":"female","email":"casandramullen@orbean.com"},{"id":2,"age":30,"name":"Brown Joyce","gender":"male","email":"brownjoyce@orbean.com"},{"id":3,"age":40,"name":"Casey Pitts","gender":"male","email":"caseypitts@orbean.com"},{"id":4,"age":40,"name":"Leah Barker","gender":"female","email":"leahbarker@orbean.com"},{"id":5,"age":35,"name":"Faulkner Ross","gender":"male","email":"faulknerross@orbean.com"},{"id":6,"age":37,"name":"Lindsay Tanner","gender":"male","email":"lindsaytanner@orbean.com"}]'));
   });
 
+  test('JSONData should be compatible json file with object data', () {
+    var sut = JSONData();
+    sut.load('./example_files/json_example_case2.json');
+    expect(sut.fields.length, equals(5));
+    expect(sut.data, equals('[{"id":0,"age": 29,"name":"Magdalena Moreno","gender":"female","email":"magdalenamoreno@orbean.com"}]'));
+  });
+
   test('JSONData should get fields correctly after load json file', () {
     var sut = JSONData();
     sut.load('./example_files/json_example.json');
@@ -40,7 +47,6 @@ void main() {
     sut.load('./example_files/json_example.json');
     var originalFields = sut.fields;
     var originalData = sut.data;
-    print(originalData);
     sut.save('./.generated/json_equivalent.json');
     sut.clear();
     sut.load('./.generated/json_equivalent.json');
