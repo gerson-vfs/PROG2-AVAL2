@@ -15,8 +15,6 @@ class JSONData implements Data {
     if (jsonData is Map) {
       jsonData = [jsonData];
     }
-
-    print(jsonData);
   }
 
   bool get hasData {
