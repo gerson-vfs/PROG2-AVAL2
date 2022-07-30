@@ -4,7 +4,7 @@ import 'data.dart';
 
 class XMLData implements Data {
   String? _rawXML = null;
-  List<Map<String, dynamic>>? _mapXML = null;
+  List<Map<String, dynamic>>? mapXML = null;
 
   String? get data => _rawXML;
 
@@ -34,7 +34,7 @@ class XMLData implements Data {
       result.add(data);
     }
 
-    _mapXML = result;
+    mapXML = result;
     _rawXML = raw;
   }
 
@@ -47,11 +47,11 @@ class XMLData implements Data {
   List<String> get fields {
     Set<String> keys = {};
 
-    if (_mapXML == null) {
+    if (mapXML == null) {
       return keys.toList();
     }
 
-    for (var el in _mapXML!) {
+    for (var el in mapXML!) {
       for (var key in el.keys) {
         keys.add(key);
       }
