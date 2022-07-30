@@ -11,7 +11,7 @@ class XMLData implements Data {
     }
 
     final builder = XmlBuilder();
-    builder.processing('xml', 'version="1.0"');
+    builder.processing('xml', 'version="1.0" encoding="UTF-8"');
     builder.element('root', nest: () {
       for (final map in mapXML!) {
         builder.element('element', nest: () {
@@ -30,19 +30,19 @@ class XMLData implements Data {
 
   void set data(String? raw) {
     if (raw == null) {
-      throw Exception("Invalid XML data");
+      throw Exception("Invalid XML data1");
     }
 
     final document = XmlDocument.parse(raw);
 
     final root = document.getElement("root");
     if (root == null) {
-      throw Exception("Invalid XML data");
+      throw Exception("Invalid XML data2");
     }
 
     final elements = root.findElements("element");
     if (elements.isEmpty) {
-      throw Exception("Invalid XML data");
+      throw Exception("Invalid XML data3");
     }
 
     final List<Map<String, dynamic>> result = [];
@@ -60,7 +60,7 @@ class XMLData implements Data {
   bool get hasData => data != null;
 
   void clear() {
-    data = null;
+    mapXML = null;
   }
 
   List<String> get fields {

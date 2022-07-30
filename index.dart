@@ -16,7 +16,7 @@ void main() {
   xmlData.load(xmlFileName);
   print(xmlData.hasData);
   print(xmlData.fields);
-  xmlData.save('./example_files/xml_example_out.json');
+  xmlData.save('./example_files/xml_example_out.xml');
   xmlData.clear();
   print(xmlData.hasData);
 }
