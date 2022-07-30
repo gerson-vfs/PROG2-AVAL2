@@ -1,6 +1,11 @@
 import 'dart:io';
 import 'package:xml/xml.dart';
 import 'data.dart';
+import './errors/NoDataError.dart';
+import 'errors/FileNotFoundError.dart';
+import './errors/InvalidFormatError.dart';
+import './errors/ReadFileError.dart';
+import './errors/WriteFileError.dart';
 
 class XMLData implements Data {
   List<Map<String, dynamic>>? _mapXML = null;
@@ -32,19 +37,19 @@ class XMLData implements Data {
 
   void set data(String? raw) {
     if (raw == null) {
-      throw Exception("Invalid XML data1");
+      throw NoDataError();
     }
 
     final document = XmlDocument.parse(raw);
 
     final root = document.getElement("root");
     if (root == null) {
-      throw Exception("Invalid XML data2");
+      throw InvalidFormatError("Invalid XML data format");
     }
 
     final elements = root.findElements("element");
     if (elements.isEmpty) {
-      throw Exception("Invalid XML data3");
+      throw InvalidFormatError("Invalid XML data format");
     }
 
     final List<Map<String, dynamic>> result = [];
@@ -84,24 +89,30 @@ class XMLData implements Data {
 
   void load(String fileName) {
     final file = new File(fileName);
+
+    if (!file.existsSync()) {
+      throw FileNotFoundError(file.path);
+    }
+
     try {
       final raw = file.readAsStringSync();
       data = raw;
     } catch (e) {
-      throw e; // TODO
+      ReadFileError(e.toString());
     }
   }
 
   void save(String fileName) {
+    final data = this.data;
     if (data == null) {
-      throw Exception("No data to save");
+      throw NoDataError();
     }
 
-    final file = new File(fileName);
     try {
-      file.writeAsStringSync(data!);
+      final file = new File(fileName);
+      file.writeAsStringSync(data);
     } catch (e) {
-      throw e; // TODO
+      WriteFileError(e.toString());
     }
   }
 }

@@ -18,6 +18,7 @@ void main() {
   xmlData.load(xmlFileName);
   print(xmlData.hasData);
   print(xmlData.data);
+  xmlData.data = null;
   print(xmlData.fields);
   xmlData.save('./example_files/xml_example_out.xml');
   xmlData.clear();
