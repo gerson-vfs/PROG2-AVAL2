@@ -11,7 +11,7 @@ void main() {
   test('XMLData should load xml file data correctly', () {
     var sut = XMLData();
     sut.load('./example_files/xml_example.xml');
-    expect(sut.mapXML!.length, equals(8));
+    expect(sut.mapXML!.length, equals(7));
     expect(sut.data, equals('''<?xml version="1.0" encoding="UTF-8"?>
 <root>
    <element>
@@ -83,8 +83,8 @@ void main() {
     sut.load('./example_files/xml_example.xml');
     sut.clear();
     expect(sut.hasData, equals(false));
-    expect(sut.data, equals(''));
-    expect(sut.mapXML, equals([]));
+    expect(sut.data, equals(null));
+    expect(sut.mapXML, equals(null));
     expect(sut.fields, equals([]));
   });
 
