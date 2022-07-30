@@ -11,10 +11,13 @@ void main() {
   jSONData.clear();
   print(jSONData.hasData);
 
+  print("------------------------------------------------");
   var xmlFileName = './example_files/xml_example.xml';
   var xmlData = XMLData();
+  print(xmlData.hasData);
   xmlData.load(xmlFileName);
   print(xmlData.hasData);
+  print(xmlData.data);
   print(xmlData.fields);
   xmlData.save('./example_files/xml_example_out.xml');
   xmlData.clear();

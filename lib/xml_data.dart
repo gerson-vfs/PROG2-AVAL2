@@ -3,9 +3,11 @@ import 'package:xml/xml.dart';
 import 'data.dart';
 
 class XMLData implements Data {
-  List<Map<String, dynamic>>? mapXML = null;
+  List<Map<String, dynamic>>? _mapXML = null;
 
   String? get data {
+    final mapXML = _mapXML;
+
     if (mapXML == null) {
       return null;
     }
@@ -13,7 +15,7 @@ class XMLData implements Data {
     final builder = XmlBuilder();
     builder.processing('xml', 'version="1.0" encoding="UTF-8"');
     builder.element('root', nest: () {
-      for (final map in mapXML!) {
+      for (final map in mapXML) {
         builder.element('element', nest: () {
           for (final key in map.keys) {
             builder.element(key, nest: () {
@@ -54,23 +56,24 @@ class XMLData implements Data {
       result.add(data);
     }
 
-    mapXML = result;
+    _mapXML = result;
   }
 
   bool get hasData => data != null;
 
   void clear() {
-    mapXML = null;
+    _mapXML = null;
   }
 
   List<String> get fields {
+    final mapXML = _mapXML;
     Set<String> keys = {};
 
     if (mapXML == null) {
       return keys.toList();
     }
 
-    for (var el in mapXML!) {
+    for (var el in mapXML) {
       for (var key in el.keys) {
         keys.add(key);
       }
