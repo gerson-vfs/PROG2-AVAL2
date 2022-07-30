@@ -3,10 +3,30 @@ import 'package:xml/xml.dart';
 import 'data.dart';
 
 class XMLData implements Data {
-  String? _rawXML = null;
   List<Map<String, dynamic>>? mapXML = null;
 
-  String? get data => _rawXML;
+  String? get data {
+    if (mapXML == null) {
+      return null;
+    }
+
+    final builder = XmlBuilder();
+    builder.processing('xml', 'version="1.0"');
+    builder.element('root', nest: () {
+      for (final map in mapXML!) {
+        builder.element('element', nest: () {
+          for (final key in map.keys) {
+            builder.element(key, nest: () {
+              builder.text(map[key]);
+            });
+          }
+        });
+      }
+    });
+
+    final document = builder.buildDocument();
+    return document.toString();
+  }
 
   void set data(String? raw) {
     if (raw == null) {
@@ -35,7 +55,6 @@ class XMLData implements Data {
     }
 
     mapXML = result;
-    _rawXML = raw;
   }
 
   bool get hasData => data != null;
@@ -70,5 +89,16 @@ class XMLData implements Data {
     }
   }
 
-  void save(String fileName) {}
+  void save(String fileName) {
+    if (data == null) {
+      throw Exception("No data to save");
+    }
+
+    final file = new File(fileName);
+    try {
+      file.writeAsStringSync(data!);
+    } catch (e) {
+      throw e; // TODO
+    }
+  }
 }
