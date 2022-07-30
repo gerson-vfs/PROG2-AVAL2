@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:xml/xml.dart';
-import 'data.dart';
+import './data.dart';
 import './errors/NoDataError.dart';
-import 'errors/FileNotFoundError.dart';
+import './errors/FileNotFoundError.dart';
 import './errors/InvalidFormatError.dart';
 import './errors/ReadFileError.dart';
 import './errors/WriteFileError.dart';

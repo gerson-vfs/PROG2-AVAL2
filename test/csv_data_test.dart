@@ -4,12 +4,12 @@ import '../lib/csv_data.dart';
 
 void main() {
   test('CSVData should have hasData false as default', () {
-    var sut = CSVData();
+    final sut = CSVData();
     expect(sut.hasData, equals(false));
   });
 
   test('CSVData should load csv file data correctly', () {
-    var sut = CSVData();
+    final sut = CSVData();
     sut.load('./example_files/csv_example.csv');
     expect(sut.rows.length, equals(8));
     expect(sut.data, equals('''id,age,name,gender,email
@@ -23,19 +23,19 @@ void main() {
   });
 
   test('CSVData should get fields correctly after load csv file', () {
-    var sut = CSVData();
+    final sut = CSVData();
     sut.load('./example_files/csv_example.csv');
     expect(sut.fields, equals(['id','age','name','gender','email']));
   });
 
   test('CSVData should have hasData true after load csv file', () {
-    var sut = CSVData();
+    final sut = CSVData();
     sut.load('./example_files/csv_example.csv');
     expect(sut.hasData, equals(true));
   });
 
   test('CSVData should clear fields after load csv file and call clear', () {
-    var sut = CSVData();
+    final sut = CSVData();
     sut.load('./example_files/csv_example.csv');
     sut.clear();
     expect(sut.hasData, equals(false));
@@ -45,11 +45,11 @@ void main() {
   });
 
   test('CSVData should save csv in filePath with correct Data', () {
-    var sut = CSVData();
+    final sut = CSVData();
     sut.load('./example_files/csv_example.csv');
-    var originalRows = sut.rows;
-    var originalFields = sut.fields;
-    var originalData = sut.data;
+    final originalRows = sut.rows;
+    final originalFields = sut.fields;
+    final originalData = sut.data;
     sut.save('./.generated/csv_equivalent.csv');
     sut.clear();
     sut.load('./.generated/csv_equivalent.csv');
