@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:xml/xml.dart';
 import './data.dart';
-import 'errors/no_data_error.dart';
-import 'errors/file_not_found_error.dart';
-import 'errors/invalid_format_error.dart';
-import 'errors/read_file_error.dart';
-import 'errors/write_file_error.dart';
+import './errors/no_data_error.dart';
+import './errors/file_not_found_error.dart';
+import './errors/invalid_format_error.dart';
+import './errors/read_file_error.dart';
+import './errors/write_file_error.dart';
 
 class XMLData implements Data {
   List<Map<String, dynamic>>? _mapXML = null;

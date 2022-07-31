@@ -1,7 +1,7 @@
-import 'lib/json_data.dart';
-import 'lib/csv_data.dart';
-import 'lib/tsv_data.dart';
-import 'lib/xml_data.dart';
+import './lib/json_data.dart';
+import './lib/csv_data.dart';
+import './lib/tsv_data.dart';
+import './lib/xml_data.dart';
 
 void main() {
   print("---------- JSON FILE ----------");

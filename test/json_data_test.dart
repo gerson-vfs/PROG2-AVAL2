@@ -1,5 +1,8 @@
 import 'package:test/test.dart';
 import '../lib/json_data.dart';
+import '../lib/errors/no_data_error.dart';
+import '../lib/errors/file_not_found_error.dart';
+import '../lib/errors/invalid_format_error.dart';
 
 void main() {
   test('JSONData should have hasData false as default', () {
@@ -46,5 +49,20 @@ void main() {
     expect(sut.fields, equals(originalFields));
     expect(sut.data, equals(originalData));
     expect(sut.hasData, equals(true));
+  });
+
+  test('JSONData should throw file not found error', () {
+    final sut = JSONData();
+    expect(() => sut.load('./example_files/json_example_not_found.json'), throwsA(isA<FileNotFoundError>()));
+  });
+
+  test('JSONData should throw invalid format error', () {
+    final sut = JSONData();
+    expect(() => sut.load('./example_files/csv_example.csv'), throwsA(isA<InvalidFormatError>()));
+  });
+
+  test('JSONData should throw no data error', () {
+    final sut = JSONData();
+    expect(() => sut.save('./.generated/json_equivalent.json'), throwsA(isA<NoDataError>()));
   });
 }

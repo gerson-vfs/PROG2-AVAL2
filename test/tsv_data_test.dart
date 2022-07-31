@@ -1,6 +1,8 @@
-import 'dart:io';
 import 'package:test/test.dart';
 import '../lib/tsv_data.dart';
+import '../lib/errors/no_data_error.dart';
+import '../lib/errors/file_not_found_error.dart';
+import '../lib/errors/invalid_format_error.dart';
 
 void main() {
   test('TSVData should have hasData false as default', () {
@@ -59,6 +61,18 @@ void main() {
     expect(sut.hasData, equals(true));
   });
 
-  // TODO: escrever teste de throw error file not found
-  // TODO: escrever teste de throw invalidFile 
+  test('TSVData should throw file not found error', () {
+    final sut = TSVData();
+    expect(() => sut.load('./example_files/tsv_example_not_found.tsv'), throwsA(isA<FileNotFoundError>()));
+  });
+
+  test('TSVData should throw invalid format error', () {
+    final sut = TSVData();
+    expect(() => sut.load('./example_files/csv_example.csv'), throwsA(isA<InvalidFormatError>()));
+  });
+
+  test('TSVData should throw no data error', () {
+    final sut = TSVData();
+    expect(() => sut.save('./.generated/tsv_equivalent.tsv'), throwsA(isA<NoDataError>()));
+  });
 }

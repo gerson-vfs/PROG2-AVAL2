@@ -1,6 +1,8 @@
-import 'dart:io';
 import 'package:test/test.dart';
 import '../lib/xml_data.dart';
+import '../lib/errors/no_data_error.dart';
+import '../lib/errors/file_not_found_error.dart';
+import '../lib/errors/invalid_format_error.dart';
 
 void main() {
   test('XMLData should have hasData false as default', () {
@@ -52,6 +54,18 @@ void main() {
     expect(sut.hasData, equals(originalHasData));
   });
 
-  // TODO: escrever teste de throw error file not found
-  // TODO: escrever teste de throw invalidFile
+  test('XMLData should throw file not found error', () {
+    final sut = XMLData();
+    expect(() => sut.load('./example_files/xml_example_not_found.xml'), throwsA(isA<FileNotFoundError>()));
+  });
+
+  test('XMLData should throw invalid format error', () {
+    final sut = XMLData();
+    expect(() => sut.load('./example_files/csv_example.csv'), throwsA(isA<InvalidFormatError>()));
+  });
+
+  test('XMLData should throw no data error', () {
+    final sut = XMLData();
+    expect(() => sut.save('./.generated/xml_equivalent.xml'), throwsA(isA<NoDataError>()));
+  });
 }

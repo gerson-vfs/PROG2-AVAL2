@@ -1,4 +1,4 @@
-import 'delimited_data.dart';
+import './delimited_data.dart';
 
 class CSVData extends DelimitedData {
   String get separator => ',';

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import './data.dart';
-import 'errors/file_not_found_error.dart';
-import 'errors/invalid_format_error.dart';
-import 'errors/read_file_error.dart';
-import 'errors/no_data_error.dart';
-import 'errors/write_file_error.dart';
+import './errors/no_data_error.dart';
+import './errors/file_not_found_error.dart';
+import './errors/invalid_format_error.dart';
+import './errors/read_file_error.dart';
+import './errors/write_file_error.dart';
 
 class JSONData implements Data {
   dynamic jsonData = [];
@@ -52,17 +52,19 @@ class JSONData implements Data {
 
   void load(String fileName) {
     final file = new File(fileName);
+    String raw;
 
     if (!file.existsSync()) {
       throw FileNotFoundError(file.path);
     }
 
     try {
-      final raw = file.readAsStringSync();
-      data = raw;
+      raw = file.readAsStringSync();
     } catch (e) {
       throw ReadFileError(e.toString());
     }
+    
+    data = raw;
   }
 
   void save(String fileName) {
