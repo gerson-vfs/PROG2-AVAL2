@@ -12,7 +12,7 @@ void main() {
 
   test('CSVData should load csv file data correctly', () {
     final sut = CSVData();
-    sut.load('./example_files/csv_example.csv');
+    sut.load('./files/example_files/csv_example.csv');
     expect(sut.rows.length, equals(8));
     expect(sut.data, equals('''id,age,name,gender,email
 0,29,Magdalena Moreno,female,magdalenamoreno@orbean.com
@@ -26,19 +26,19 @@ void main() {
 
   test('CSVData should get fields correctly after load csv file', () {
     final sut = CSVData();
-    sut.load('./example_files/csv_example.csv');
+    sut.load('./files/example_files/csv_example.csv');
     expect(sut.fields, equals(['id','age','name','gender','email']));
   });
 
   test('CSVData should have hasData true after load csv file', () {
     final sut = CSVData();
-    sut.load('./example_files/csv_example.csv');
+    sut.load('./files/example_files/csv_example.csv');
     expect(sut.hasData, equals(true));
   });
 
   test('CSVData should clear fields after load csv file and call clear', () {
     final sut = CSVData();
-    sut.load('./example_files/csv_example.csv');
+    sut.load('./files/example_files/csv_example.csv');
     sut.clear();
     expect(sut.hasData, equals(false));
     expect(sut.data, equals(''));
@@ -48,13 +48,13 @@ void main() {
 
   test('CSVData should save csv in filePath with correct Data', () {
     final sut = CSVData();
-    sut.load('./example_files/csv_example.csv');
+    sut.load('./files/example_files/csv_example.csv');
     final originalRows = sut.rows;
     final originalFields = sut.fields;
     final originalData = sut.data;
-    sut.save('./.generated/csv_equivalent.csv');
+    sut.save('./files/.generated/csv_equivalent.csv');
     sut.clear();
-    sut.load('./.generated/csv_equivalent.csv');
+    sut.load('./files/.generated/csv_equivalent.csv');
     expect(sut.rows, equals(originalRows));
     expect(sut.fields, equals(originalFields));
     expect(sut.data, equals(originalData));
@@ -63,16 +63,16 @@ void main() {
 
   test('CSVData should throw file not found error', () {
     final sut = CSVData();
-    expect(() => sut.load('./example_files/csv_example_not_found.csv'), throwsA(isA<FileNotFoundError>()));
+    expect(() => sut.load('./files/example_files/csv_example_not_found.csv'), throwsA(isA<FileNotFoundError>()));
   });
 
   test('CSVData should throw invalid format error', () {
     final sut = CSVData();
-    expect(() => sut.load('./example_files/tsv_example.tsv'), throwsA(isA<InvalidFormatError>()));
+    expect(() => sut.load('./files/example_files/tsv_example.tsv'), throwsA(isA<InvalidFormatError>()));
   });
 
   test('CSVData should throw no data error', () {
     final sut = CSVData();
-    expect(() => sut.save('./.generated/csv_equivalent.csv'), throwsA(isA<NoDataError>()));
+    expect(() => sut.save('./files/.generated/csv_equivalent.csv'), throwsA(isA<NoDataError>()));
   });
 }
