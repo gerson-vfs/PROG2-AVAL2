@@ -45,16 +45,19 @@ class XMLData implements Data {
     try {
       document = XmlDocument.parse(raw);
     } catch (e) {
+      data = null;
       throw InvalidFormatError("Invalid XML data format");
     }
 
     final root = document.getElement("root");
     if (root == null) {
+      data = null;
       throw InvalidFormatError("Invalid XML data format");
     }
 
     final elements = root.findElements("element");
     if (elements.isEmpty) {
+      data = null;
       throw InvalidFormatError("Invalid XML data format");
     }
 
@@ -97,12 +100,12 @@ class XMLData implements Data {
     final file = new File(fileName);
     String raw;
 
-    if (hasData) {
-      clear();
-    }
-
     if (!file.existsSync()) {
       throw FileNotFoundError(file.path);
+    }
+
+    if (hasData) {
+      clear();
     }
 
     try {
@@ -121,8 +124,10 @@ class XMLData implements Data {
     }
 
     try {
-      final file = new File(fileName);
-      file.writeAsStringSync(data);
+      final outFile = new File(fileName);
+
+      outFile.createSync(recursive: true);
+      outFile.writeAsStringSync(data);
     } catch (e) {
       throw WriteFileError(e.toString());
     }

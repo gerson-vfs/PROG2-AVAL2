@@ -20,9 +20,11 @@ class JSONData implements Data {
         jsonData = jsonDecode(_data);
 
         if (jsonData is Map) {
+          data = null;
           throw InvalidFormatError("Invalid JSON data format");
         }
       } catch (e) {
+        data = null;
         throw InvalidFormatError("Invalid JSON data format");
       }
     } else {
@@ -67,7 +69,7 @@ class JSONData implements Data {
     } catch (e) {
       throw ReadFileError(e.toString());
     }
-    
+
     data = raw;
   }
 

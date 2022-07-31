@@ -11,7 +11,9 @@ abstract class DelimitedData extends Data {
   List<List<dynamic>> rows = [];
   String? data='';
 
-  bool hasData=false;
+  bool get hasData {
+    return data != null;
+  }
 
   List<String> get fields => rows.length > 0 ? rows[0].map((field) => field.toString()).toList() : [];
 
@@ -34,7 +36,6 @@ abstract class DelimitedData extends Data {
     if(data != ''){
       try{
         rows = const CsvToListConverter().convert(dataString, eol: '\n', fieldDelimiter: separator, allowInvalid: false);
-        hasData = true;
         for(var i = 1; i < rows.length; i++){
           if(rows[i].length != rows[i-1].length) {
             throw InvalidFormatError("Invalid data format");
@@ -45,7 +46,6 @@ abstract class DelimitedData extends Data {
       }
     }else {
       rows = [];
-      hasData = false;
     }
   }
 
@@ -65,7 +65,6 @@ abstract class DelimitedData extends Data {
   void clear() {
     rows = [];
     data = '';
-    hasData = false;
   }
 
   String get separator;
