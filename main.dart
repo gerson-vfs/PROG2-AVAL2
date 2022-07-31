@@ -88,7 +88,7 @@ void main() {
   }
 
   try {
-    tsvData.load('./files/example_files/json_example.json');
+    tsvData.load('./files/example_files/invalid_tsv_example.tsv');
   } catch (e) {
     print(e);
   }
