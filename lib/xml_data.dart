@@ -51,13 +51,11 @@ class XMLData implements Data {
 
     final root = document.getElement("root");
     if (root == null) {
-      data = null;
       throw InvalidFormatError("Invalid XML data format");
     }
 
     final elements = root.findElements("element");
     if (elements.isEmpty) {
-      data = null;
       throw InvalidFormatError("Invalid XML data format");
     }
 
