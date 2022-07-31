@@ -76,6 +76,7 @@ void main() {
   print('has data: ${tsvData.hasData} \n');
   print("Errors: \n");
   try {
+    tsvData.data = null;
     tsvData.save('./files/.generated/tsv_equivalent.tsv');
   } catch (e) {
     print(e);
