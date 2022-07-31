@@ -106,13 +106,13 @@ void main() {
   print('has data: ${xmlData.hasData} \n');
   print("Errors: \n");
   try {
-    xmlData.save('./files/.generated/tsv_equivalent.tsv');
+    xmlData.save('./files/.generated/xml_equivalent.xml');
   } catch (e) {
     print(e);
   }
 
   try {
-    xmlData.load('./files/example_files/tsv_example_not_found.tsv');
+    xmlData.load('./files/example_files/xml_example_not_found.xml');
   } catch (e) {
     print(e);
   }
