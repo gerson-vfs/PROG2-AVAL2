@@ -124,7 +124,6 @@ void main() {
   }
   print("\n \n");
 
-
   print(
-      "Integrantes do Grupo: \n João de Oliveira Castro Neto \n Gerson Victor \n Daniel Farias");
+      "Integrantes do Grupo: \n João de Oliveira Castro Neto \n Gerson Victor \n Daniel Magalhães Farias");
 }
