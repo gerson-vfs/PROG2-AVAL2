@@ -12,7 +12,7 @@ void main() {
 
   test('XMLData should load xml file data correctly', () {
     final sut = XMLData();
-    sut.load('./example_files/xml_example.xml');
+    sut.load('./files/example_files/xml_example.xml');
     expect(
         sut.data,
         equals(
@@ -21,19 +21,19 @@ void main() {
 
   test('XMLData should get fields correctly after load xml file', () {
     final sut = XMLData();
-    sut.load('./example_files/xml_example.xml');
+    sut.load('./files/example_files/xml_example.xml');
     expect(sut.fields, equals(['id', 'age', 'name', 'gender', 'email']));
   });
 
   test('XMLData should have hasData true after load xml file', () {
     final sut = XMLData();
-    sut.load('./example_files/xml_example.xml');
+    sut.load('./files/example_files/xml_example.xml');
     expect(sut.hasData, equals(true));
   });
 
   test('XMLData should clear fields after load xml file and call clear', () {
     final sut = XMLData();
-    sut.load('./example_files/xml_example.xml');
+    sut.load('./files/example_files/xml_example.xml');
     sut.clear();
     expect(sut.hasData, equals(false));
     expect(sut.data, equals(null));
@@ -42,13 +42,13 @@ void main() {
 
   test('XMLData should save xml in filePath with correct Data', () {
     final sut = XMLData();
-    sut.load('./example_files/xml_example.xml');
+    sut.load('./files/example_files/xml_example.xml');
     final originalFields = sut.fields;
     final originalData = sut.data;
     final originalHasData = sut.hasData;
-    sut.save('./.generated/xml_equivalent.xml');
+    sut.save('./files/.generated/xml_equivalent.xml');
     sut.clear();
-    sut.load('./.generated/xml_equivalent.xml');
+    sut.load('./files/.generated/xml_equivalent.xml');
     expect(sut.fields, equals(originalFields));
     expect(sut.data, equals(originalData));
     expect(sut.hasData, equals(originalHasData));
@@ -56,16 +56,16 @@ void main() {
 
   test('XMLData should throw file not found error', () {
     final sut = XMLData();
-    expect(() => sut.load('./example_files/xml_example_not_found.xml'), throwsA(isA<FileNotFoundError>()));
+    expect(() => sut.load('./files/example_files/xml_example_not_found.xml'), throwsA(isA<FileNotFoundError>()));
   });
 
   test('XMLData should throw invalid format error', () {
     final sut = XMLData();
-    expect(() => sut.load('./example_files/csv_example.csv'), throwsA(isA<InvalidFormatError>()));
+    expect(() => sut.load('./files/example_files/csv_example.csv'), throwsA(isA<InvalidFormatError>()));
   });
 
   test('XMLData should throw no data error', () {
     final sut = XMLData();
-    expect(() => sut.save('./.generated/xml_equivalent.xml'), throwsA(isA<NoDataError>()));
+    expect(() => sut.save('./files/.generated/xml_equivalent.xml'), throwsA(isA<NoDataError>()));
   });
 }

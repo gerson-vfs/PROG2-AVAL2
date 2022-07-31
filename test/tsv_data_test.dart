@@ -12,7 +12,7 @@ void main() {
 
   test('TSVData should load tsv file data correctly', () {
     final sut = TSVData();
-    sut.load('./example_files/tsv_example.tsv');
+    sut.load('./files/example_files/tsv_example.tsv');
     expect(sut.rows.length, equals(8));
     expect(sut.data, equals('''id\tage\tname\tgender\temail
 0\t29\tMagdalena Moreno\tfemale\tmagdalenamoreno@orbean.com
@@ -26,19 +26,19 @@ void main() {
 
   test('TSVData should get fields correctly after load tsv file', () {
     final sut = TSVData();
-    sut.load('./example_files/tsv_example.tsv');
+    sut.load('./files/example_files/tsv_example.tsv');
     expect(sut.fields, equals(['id','age','name','gender','email']));
   });
 
   test('TSVData should have hasData true after load tsv file', () {
     final sut = TSVData();
-    sut.load('./example_files/tsv_example.tsv');
+    sut.load('./files/example_files/tsv_example.tsv');
     expect(sut.hasData, equals(true));
   });
 
   test('TSVData should clear fields after load tsv file and call clear', () {
     final sut = TSVData();
-    sut.load('./example_files/tsv_example.tsv');
+    sut.load('./files/example_files/tsv_example.tsv');
     sut.clear();
     expect(sut.hasData, equals(false));
     expect(sut.data, equals(''));
@@ -48,13 +48,13 @@ void main() {
 
   test('TSVData should save tsv in filePath with correct Data', () {
     final sut = TSVData();
-    sut.load('./example_files/tsv_example.tsv');
+    sut.load('./files/example_files/tsv_example.tsv');
     final originalRows = sut.rows;
     final originalFields = sut.fields;
     final originalData = sut.data;
-    sut.save('./.generated/tsv_equivalent.tsv');
+    sut.save('./files/.generated/tsv_equivalent.tsv');
     sut.clear();
-    sut.load('./.generated/tsv_equivalent.tsv');
+    sut.load('./files/.generated/tsv_equivalent.tsv');
     expect(sut.rows, equals(originalRows));
     expect(sut.fields, equals(originalFields));
     expect(sut.data, equals(originalData));
@@ -63,7 +63,7 @@ void main() {
 
   test('TSVData should throw file not found error', () {
     final sut = TSVData();
-    expect(() => sut.load('./example_files/tsv_example_not_found.tsv'), throwsA(isA<FileNotFoundError>()));
+    expect(() => sut.load('./files/example_files/tsv_example_not_found.tsv'), throwsA(isA<FileNotFoundError>()));
   });
 
   test('TSVData should throw invalid format error', () {
@@ -73,6 +73,6 @@ void main() {
 
   test('TSVData should throw no data error', () {
     final sut = TSVData();
-    expect(() => sut.save('./.generated/tsv_equivalent.tsv'), throwsA(isA<NoDataError>()));
+    expect(() => sut.save('./files/.generated/tsv_equivalent.tsv'), throwsA(isA<NoDataError>()));
   });
 }

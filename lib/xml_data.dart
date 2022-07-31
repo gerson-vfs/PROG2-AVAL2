@@ -95,12 +95,15 @@ class XMLData implements Data {
 
   void load(String fileName) {
     final file = new File(fileName);
+    String raw;
+
+    if (hasData) {
+      clear();
+    }
 
     if (!file.existsSync()) {
       throw FileNotFoundError(file.path);
     }
-
-    String raw;
 
     try {
       raw = file.readAsStringSync();

@@ -54,6 +54,10 @@ class JSONData implements Data {
     final file = new File(fileName);
     String raw;
 
+    if (hasData) {
+      clear();
+    }
+
     if (!file.existsSync()) {
       throw FileNotFoundError(file.path);
     }
