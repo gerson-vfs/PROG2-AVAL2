@@ -1,11 +1,15 @@
 ## Segunda Prova de Programação 2
 
 # Como rodar o Projeto
+## Setup
+rode `dart pub get` para instalar as dependências necessárias
+
+## Rodando a aplicação
 rode `dart main.dart` para executar a aplicação
 
 # Como rodar os testes
 ## Setup
-rode `dart pub get` para instalar a dependencia de teste
+rode `dart pub get` para instalar a dependências para os testes
 
 ## Rodando os testes
 rode `dart test` para testar
