@@ -1,4 +1,4 @@
-import './GenericError.dart';
+import 'generic_error.dart';
 
 class InvalidFormatError extends GenericError {
   InvalidFormatError([String? message])

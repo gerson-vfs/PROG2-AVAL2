@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import './data.dart';
-import './errors/FileNotFoundError.dart';
-import './errors/InvalidFormatError.dart';
-import './errors/ReadFileError.dart';
-import './errors/NoDataError.dart';
-import './errors/WriteFileError.dart';
+import 'errors/file_not_found_error.dart';
+import 'errors/invalid_format_error.dart';
+import 'errors/read_file_error.dart';
+import 'errors/no_data_error.dart';
+import 'errors/write_file_error.dart';
 
 class JSONData implements Data {
   dynamic jsonData = [];

@@ -1,4 +1,4 @@
-import './GenericError.dart';
+import 'generic_error.dart';
 
 class FileNotFoundError extends GenericError {
   final String path;
