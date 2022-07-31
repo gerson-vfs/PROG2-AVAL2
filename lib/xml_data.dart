@@ -37,7 +37,7 @@ class XMLData implements Data {
 
   void set data(String? raw) {
     if (raw == null) {
-      throw NoDataError();
+      return _mapXML = null;
     }
 
     final document = XmlDocument.parse(raw);
@@ -67,7 +67,7 @@ class XMLData implements Data {
   bool get hasData => data != null;
 
   void clear() {
-    _mapXML = null;
+    data = null;
   }
 
   List<String> get fields {
@@ -98,7 +98,7 @@ class XMLData implements Data {
       final raw = file.readAsStringSync();
       data = raw;
     } catch (e) {
-      ReadFileError(e.toString());
+      throw ReadFileError(e.toString());
     }
   }
 
@@ -112,7 +112,7 @@ class XMLData implements Data {
       final file = new File(fileName);
       file.writeAsStringSync(data);
     } catch (e) {
-      WriteFileError(e.toString());
+      throw WriteFileError(e.toString());
     }
   }
 }
