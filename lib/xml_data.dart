@@ -40,7 +40,13 @@ class XMLData implements Data {
       return _mapXML = null;
     }
 
-    final document = XmlDocument.parse(raw);
+    XmlDocument document;
+
+    try {
+      document = XmlDocument.parse(raw);
+    } catch (e) {
+      throw InvalidFormatError("Invalid XML data format");
+    }
 
     final root = document.getElement("root");
     if (root == null) {
