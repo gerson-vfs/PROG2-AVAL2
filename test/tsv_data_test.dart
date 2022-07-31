@@ -41,7 +41,7 @@ void main() {
     sut.load('./files/example_files/tsv_example.tsv');
     sut.clear();
     expect(sut.hasData, equals(false));
-    expect(sut.data, equals(''));
+    expect(sut.data, equals(null));
     expect(sut.rows, equals([]));
     expect(sut.fields, equals([]));
   });
