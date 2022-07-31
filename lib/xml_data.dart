@@ -1,13 +1,8 @@
-import 'dart:io';
 import 'package:xml/xml.dart';
 import './data.dart';
-import './errors/no_data_error.dart';
-import './errors/file_not_found_error.dart';
 import './errors/invalid_format_error.dart';
-import './errors/read_file_error.dart';
-import './errors/write_file_error.dart';
 
-class XMLData implements Data {
+class XMLData extends Data {
   List<Map<String, dynamic>>? _mapXML = null;
 
   String? get data {
@@ -71,12 +66,6 @@ class XMLData implements Data {
     _mapXML = result;
   }
 
-  bool get hasData => data != null;
-
-  void clear() {
-    data = null;
-  }
-
   List<String> get fields {
     final mapXML = _mapXML;
     Set<String> keys = {};
@@ -92,42 +81,5 @@ class XMLData implements Data {
     }
 
     return keys.toList();
-  }
-
-  void load(String fileName) {
-    final file = new File(fileName);
-    String raw;
-
-    if (!file.existsSync()) {
-      throw FileNotFoundError(file.path);
-    }
-
-    if (hasData) {
-      clear();
-    }
-
-    try {
-      raw = file.readAsStringSync();
-    } catch (e) {
-      throw ReadFileError(e.toString());
-    }
-
-    data = raw;
-  }
-
-  void save(String fileName) {
-    final data = this.data;
-    if (data == null) {
-      throw NoDataError();
-    }
-
-    try {
-      final outFile = new File(fileName);
-
-      outFile.createSync(recursive: true);
-      outFile.writeAsStringSync(data);
-    } catch (e) {
-      throw WriteFileError(e.toString());
-    }
   }
 }
