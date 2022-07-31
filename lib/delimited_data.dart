@@ -22,8 +22,14 @@ abstract class DelimitedData extends Data {
       throw FileNotFoundError(file.path);
     }
 
-    final dataString = file.readAsStringSync();
-    
+    String dataString;
+
+    try {
+      dataString = file.readAsStringSync();
+    } catch (e) {
+      throw ReadFileError(e.toString());
+    }
+
     data = dataString;
     if(data != ''){
       try{
@@ -48,9 +54,12 @@ abstract class DelimitedData extends Data {
       throw NoDataError();
     }
 
-    final outFile = File(fileName);
-    outFile.createSync(recursive: true);
-    outFile.writeAsStringSync(data ?? '');
+    try {
+      final outFile = File(fileName);
+      outFile.writeAsStringSync(data ?? '');
+    } catch (e) {
+      throw WriteFileError(e.toString());
+    }
   }
 
   void clear() {
