@@ -4,12 +4,12 @@ import '../lib/tsv_data.dart';
 
 void main() {
   test('TSVData should have hasData false as default', () {
-    var sut = TSVData();
+    final sut = TSVData();
     expect(sut.hasData, equals(false));
   });
 
   test('TSVData should load tsv file data correctly', () {
-    var sut = TSVData();
+    final sut = TSVData();
     sut.load('./example_files/tsv_example.tsv');
     expect(sut.rows.length, equals(8));
     expect(sut.data, equals('''id\tage\tname\tgender\temail
@@ -23,19 +23,19 @@ void main() {
   });
 
   test('TSVData should get fields correctly after load tsv file', () {
-    var sut = TSVData();
+    final sut = TSVData();
     sut.load('./example_files/tsv_example.tsv');
     expect(sut.fields, equals(['id','age','name','gender','email']));
   });
 
   test('TSVData should have hasData true after load tsv file', () {
-    var sut = TSVData();
+    final sut = TSVData();
     sut.load('./example_files/tsv_example.tsv');
     expect(sut.hasData, equals(true));
   });
 
   test('TSVData should clear fields after load tsv file and call clear', () {
-    var sut = TSVData();
+    final sut = TSVData();
     sut.load('./example_files/tsv_example.tsv');
     sut.clear();
     expect(sut.hasData, equals(false));
@@ -45,11 +45,11 @@ void main() {
   });
 
   test('TSVData should save tsv in filePath with correct Data', () {
-    var sut = TSVData();
+    final sut = TSVData();
     sut.load('./example_files/tsv_example.tsv');
-    var originalRows = sut.rows;
-    var originalFields = sut.fields;
-    var originalData = sut.data;
+    final originalRows = sut.rows;
+    final originalFields = sut.fields;
+    final originalData = sut.data;
     sut.save('./.generated/tsv_equivalent.tsv');
     sut.clear();
     sut.load('./.generated/tsv_equivalent.tsv');
