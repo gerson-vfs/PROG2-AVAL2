@@ -68,7 +68,7 @@ void main() {
 
   test('TSVData should throw invalid format error', () {
     final sut = TSVData();
-    expect(() => sut.load('./example_files/csv_example.csv'), throwsA(isA<InvalidFormatError>()));
+    expect(() => sut.load('./example_files/invalid_tsv_example.tsv'), throwsA(isA<InvalidFormatError>()));
   });
 
   test('TSVData should throw no data error', () {
