@@ -126,5 +126,5 @@ void main() {
 
 
   print(
-      "Integrantes do Grupo: \n João Castro Neto \n Gerson Victor \n Daniel Farias");
+      "Integrantes do Grupo: \n João de Oliveira Castro Neto \n Gerson Victor \n Daniel Farias");
 }
