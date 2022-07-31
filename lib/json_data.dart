@@ -80,6 +80,7 @@ class JSONData implements Data {
 
     try {
       final file = new File(fileName);
+      file.createSync(recursive: true);
       file.writeAsStringSync(jsonContent);
     } catch (e) {
       throw WriteFileError(e.toString());
