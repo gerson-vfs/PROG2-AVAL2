@@ -101,7 +101,7 @@ void main() {
   print('has data: ${xmlData.hasData} \n');
   print('data: ${xmlData.data} \n');
   print('fields: ${xmlData.fields} \n');
-  xmlData.save('./files/out_files/json_example_out.json');
+  xmlData.save('./files/out_files/xml_example_out.xml');
   xmlData.clear();
   print('has data: ${xmlData.hasData} \n');
   print("Errors: \n");
