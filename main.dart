@@ -41,7 +41,7 @@ void main() {
   print('has data: ${csvData.hasData} \n');
   print('data: ${csvData.data} \n');
   print('fields: ${csvData.fields} \n');
-  csvData.save('./files/out_files/json_example_out.json');
+  csvData.save('./files/out_files/csv_example_out.csv');
   csvData.clear();
   print('has data: ${csvData.hasData} \n');
   print("Errors: \n");
@@ -71,7 +71,7 @@ void main() {
   print('has data: ${tsvData.hasData} \n');
   print('data: ${tsvData.data} \n');
   print('fields: ${tsvData.fields} \n');
-  tsvData.save('./files/out_files/json_example_out.json');
+  tsvData.save('./files/out_files/tsv_example_out.tsv');
   tsvData.clear();
   print('has data: ${tsvData.hasData} \n');
   print("Errors: \n");
